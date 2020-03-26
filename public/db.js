@@ -65,5 +65,14 @@ function checkDatabase() {
   };
 }
 
+function deletePending() {
+  // open a transaction on your pending db
+  const transaction = db.transaction(["pending"], "readwrite");
+  // access your pending object store
+  const store = transaction.objectStore("pending");
+  // clear all items in your store
+  store.clear();
+}
+
 // listen for app coming back online
 window.addEventListener("online", checkDatabase);
